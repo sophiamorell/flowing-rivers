@@ -1,9 +1,0 @@
-# Netlify build settings. Netlify detects Next.js and installs its Next.js
-# adapter automatically (no plugin needs listing here), so this file only
-# pins the basics so nothing has to be typed into the dashboard.
-[build]
-  command = "npm run build"
-  publish = ".next"
-
-[build.environment]
-  NODE_VERSION = "22"
