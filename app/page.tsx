@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
 import { HowItWorks } from "@/components/HowItWorks";
+import { Testimonials } from "@/components/Testimonials";
 import { Faq } from "@/components/Faq";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
@@ -27,9 +28,8 @@ export default function HomePage() {
         <Hero />
         <About />
         <Services />
-        {/* TODO 15: <Testimonials /> goes here (E-24). Blocked until written permission,
-            parental consent for the two minors, and the peer-coach / HRV-claim questions
-            are resolved. See TODO.md. */}
+        {/* TODO 15: built at Sophie's direction; permissions still outstanding. See TODO.md. */}
+        <Testimonials />
         <HowItWorks />
         <Faq />
         <ContactForm />

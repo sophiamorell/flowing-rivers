@@ -57,6 +57,15 @@ export type Step = { title: string; body: string };
 
 export type FaqItem = { question: string; answer: string };
 
+export type Testimonial = {
+  name: string;
+  age: string;
+  /** Short verbatim excerpt shown in the rotating banner. */
+  excerpt: string;
+  /** Full text, verbatim as supplied. Shown when "Read the full testimonial" is opened. */
+  quote: string;
+};
+
 export type SiteContent = {
   name: string;
   tagline: string;
@@ -117,6 +126,11 @@ export type SiteContent = {
     heading: string;
     intro: string;
     steps: Step[];
+  };
+  testimonials: {
+    eyebrow: string;
+    heading: string;
+    items: Testimonial[];
   };
   faq: {
     eyebrow: string;
@@ -372,6 +386,66 @@ export const site: SiteContent = {
     ],
   },
 
+  // TODO 15: testimonials are on the page at Sophie's direction (2026-09-09).
+  // Still outstanding before launch: written permission from all six, parental
+  // consent for Ayla and Mason, a decision on Carrie/Stephanie (peer coaching,
+  // not client coaching), Kellie's HRV sentences (a measurable health claim),
+  // and disclosure if "Sophie, 39" is the site's marketer. Text is verbatim.
+  testimonials: {
+    eyebrow: "Testimonials",
+    heading: "In their words.",
+    items: [
+      {
+        name: "Stephanie",
+        age: "59",
+        excerpt:
+          "Allison was not only a wealth of knowledge, but proved to be fully invested in every session … She has such a way of connecting to others. Her passion to improve the well-being of others is truly reflected in her expertise, compassion and knowledge.",
+        quote:
+          "My journey with Allison began with finding the confidence and resources to move forward in my nurse coach journey in deciding which path to take once Board Certified and also building confidence and resources establishing my new scented soy wax melt business. Allison was not only a wealth of knowledge, but proved to be fully invested in every session and successful in improving my confidence and business plan. I looked forward to every session with Allison. She has such a way of connecting to others. Her passion to improve the well-being of others is truly reflected in her expertise, compassion and knowledge. What I enjoyed the most about our coaching relationship is allowing me to be in the driver's seat and willing to be flexible and pivot whenever needed. I also really benefited from the grounded guided imagery practices in every session. Allison helped me to see confidence in myself, goals and products. She provided resources and sessions on marketing and small business program education. She helped me to discover \"the WHY\" of my journey which helped the momentum I needed to keep moving forward. Allison helped me to establish a new found confidence in myself and help me to discover the tools I need to maintain this confidence. Allison would do well with any population. I believe she would especially succeed in the pediatric/adolescent age group. What a great opportunity to start providing nurse coaching in this age group-giving them the confidence, knowledge and tools to be successful and healthy adults. I would highly recommend Allison's services to anyone wanting to better themselves.",
+      },
+      {
+        name: "Ayla",
+        age: "7",
+        excerpt:
+          "I really enjoyed the coloring exercises to show what I was feeling. I used the 5-senses mindfulness technique to help me calm down and be in the present, when my friends were fighting.",
+        quote:
+          "I really enjoyed the coloring exercises to show what I was feeling. I used the 5-senses mindfulness technique to help me calm down and be in the present, when my friends were fighting.",
+      },
+      {
+        name: "Mason",
+        age: "5",
+        excerpt:
+          "These sessions helped me to calm down. I feel a happy yellow color in my chest now.",
+        quote:
+          "These sessions helped me to calm down. I feel a happy yellow color in my chest now.",
+      },
+      {
+        name: "Carrie",
+        age: "35",
+        excerpt:
+          "She created a calm, respectful space where I felt heard and encouraged to think more deeply. Her thoughtful questions and ability to hold space helped me gain clarity and uncover insights on my own.",
+        quote:
+          "Working with Allison has been a meaningful and growth-filled experience. As peer coaches, we were able to support one another while maintaining professionalism and intention in every session, which created a collaborative and trusting coaching relationship. She created a calm, respectful space where I felt heard and encouraged to think more deeply. Her thoughtful questions and ability to hold space helped me gain clarity and uncover insights on my own, particularly around slowing down, reflecting, and approaching challenges more mindfully. I especially valued our exchange of tools and resources, along with her practical guidance in mindfulness that I will continue to use moving forward. She didn’t simply suggest techniques—she modeled them and created space to practice together, which made the learning feel integrated and sustainable. Our collaborative approach strengthened both my personal growth and my development as a coach, and I felt the sessions were thoughtful, supportive, and effective. I would confidently recommend her coaching to anyone seeking supportive, skillful guidance and a meaningful integration of mindfulness into everyday life.",
+      },
+      {
+        name: "Kellie",
+        age: "43",
+        excerpt:
+          "Working with Allison gave me a space to talk about my stress and gave me multiple tools to improve my wellbeing. … Allison is patient and kind, working with her was such a calming experience and I always left our sessions feeling so much better.",
+        quote:
+          "I have been dealing with burnout and general stress, not to mention years of traumatic experiences both with my job as a first responder and in my personal life. It was impacting my sleep and overall health. Working with Allison gave me a space to talk about my stress and gave me multiple tools to improve my wellbeing. Many of the breathing techniques and visualization exercises I have been able to put into practice daily and they have helped me stay grounded. I wear an Oura health ring, and I was able to see a marked improvement in my HRV score. I have been stuck in fight or flight and the sessions with Allison showed real improvements in my HRV- showing the work is helping me engage my parasympathetic system. Allison is patient and kind, working with her was such a calming experience and I always left our sessions feeling so much better. She has helped teach me the steps to improve mindfulness and my overall health. I would recommend Allison to anyone. Whether you are dealing with stress and need specific guidance, or even if you just want to improve yourself in a holistic way, Allison is an intelligent and loving coach.",
+      },
+      {
+        name: "Sophie",
+        age: "39",
+        excerpt:
+          "Working with Allison brought me from a confused, unsure space to feeling secure, safe and much more aware. … Allison is a great coach for women in a moment of change or transition when confidence and awareness are a must.",
+        quote:
+          "Working with Allison brought me from a confused, unsure space to feeling secure, safe and much more aware. Our sessions incorporated movement, mindfulness and structured exercises that gave me tools I can (and do) continue to use. I loved Allison’s flexibility with her approach - she would introduce new frameworks based on our past sessions and bring back things that worked. I loved the incorporation of movement or mindfulness into every session. Allison is a great coach for women in a moment of change or transition when confidence and awareness are a must.",
+      },
+    ],
+  },
+
   faq: {
     eyebrow: "FAQ",
     heading: "Questions people ask before they get in touch",
@@ -526,6 +600,12 @@ export type UiStrings = {
   contactLocationPrompt: string;
   backHome: string;
   lastUpdated: string;
+  readFullTestimonial: string;
+  showLess: string;
+  previousTestimonial: string;
+  nextTestimonial: string;
+  testimonialLabel: string;
+  of: string;
 };
 
 export const ui: UiStrings = {
@@ -541,4 +621,10 @@ export const ui: UiStrings = {
   contactLocationPrompt: "In person in",
   backHome: "Back to the home page",
   lastUpdated: "Last updated",
+  readFullTestimonial: "Read the full testimonial",
+  showLess: "Show less",
+  previousTestimonial: "Previous testimonial",
+  nextTestimonial: "Next testimonial",
+  testimonialLabel: "Testimonial",
+  of: "of",
 };
