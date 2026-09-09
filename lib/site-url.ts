@@ -5,5 +5,5 @@
  * registered and pointed at the host before launch.
  */
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.flowingrivershealth.com"
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://flowingrivershealth.com"
 ).replace(/\/+$/, "");

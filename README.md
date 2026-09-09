@@ -148,8 +148,8 @@ Netlify rebuilds and publishes automatically on every push.
 **The real domain**
 
 In Netlify, open **Domain management**, add `flowingrivershealth.com`, and
-follow the DNS instructions. Keep `www` as the primary so it matches
-`NEXT_PUBLIC_SITE_URL`.
+follow the DNS instructions. The primary domain is the bare
+`flowingrivershealth.com` (www redirects to it), matching `NEXT_PUBLIC_SITE_URL`.
 
 ## 6. What is where
 

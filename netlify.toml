@@ -6,7 +6,7 @@
 [build.environment]
   NODE_VERSION = "22"
   # Baked into the page at build time (canonical URL, sitemap, Open Graph).
-  NEXT_PUBLIC_SITE_URL = "https://www.flowingrivershealth.com"
+  NEXT_PUBLIC_SITE_URL = "https://flowingrivershealth.com"
 
 # Netlify's Next.js Runtime. Without this the build output (.next) is served
 # as plain static files, which 404s on every URL.

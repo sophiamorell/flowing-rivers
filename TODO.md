@@ -18,7 +18,7 @@ be done before launch but the site works without it. **Nice to have** = later.
 | 2  | Legal / marketing name | ✅ Closed: "Flowing Rivers Health" (E-37) | `content/site.ts` |
 | 3  | Credentials | ✅ Closed: E-04 trust line and E-14 credentials list, verbatim. No board certification exists and none is implied. See item 22 for the 2026 certificate. | `content/site.ts` → `hero.trustLine`, `about.credentials` |
 | 4  | **Pricing.** $100 (60 min) and $150 (90 min) were in the copy Allison marked up and she left them unchanged, so they are now on the page. Sophie to verify before launch. Starter Package price: see item 16. | ⚠️ Partly | `content/site.ts` → `services.offers[].price` |
-| 5  | **Domain.** Implied by her email: `flowingrivershealth.com`. The site now defaults to `https://www.flowingrivershealth.com` for canonical, sitemap, Open Graph, and structured data. Confirm the domain is registered and pointed before launch. | ⚠️ Confirm | `lib/site-url.ts`, `netlify.toml`, `.env.example` |
+| 5  | Domain | ✅ Closed: `flowingrivershealth.com` is registered, pointed at Netlify, and live (www redirects to the bare domain). Canonical, sitemap, Open Graph, and structured data use it. | `lib/site-url.ts`, `netlify.toml`, `.env.example` |
 | 6  | Business email | ✅ Closed: `Allison.RN@flowingrivershealth.com` on the page, in the footer, and as the form fallback. Set `CONTACT_EMAIL` to it in Netlify. | `content/site.ts` → `email` |
 | 7  | Photograph of Allison (About) | ✅ Received. The headshot is 1242px on its long edge, under the ~1600px bar. Ask for the original. | `public/images/allison.jpg` |
 | 8  | Hero image | ✅ Closed: the seated portrait. | `public/images/hero.jpg` |
