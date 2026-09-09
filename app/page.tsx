@@ -27,6 +27,9 @@ export default function HomePage() {
         <Hero />
         <About />
         <Services />
+        {/* TODO 15: <Testimonials /> goes here (E-24). Blocked until written permission,
+            parental consent for the two minors, and the peer-coach / HRV-claim questions
+            are resolved. See TODO.md. */}
         <HowItWorks />
         <Faq />
         <ContactForm />

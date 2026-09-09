@@ -74,20 +74,20 @@ export function Services() {
       <div className="bg-sand py-20 md:py-24">
         <Container>
           <h3 className="text-2xl md:text-3xl">{services.offersHeading}</h3>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {services.offers.map((o, i) => (
               <Reveal
                 as="li"
                 key={o.title}
                 delay={i * 60}
-                className="flex flex-col rounded-2xl border border-river-300/40 bg-cream p-7 sm:last:col-span-2 lg:last:col-span-1"
+                className="flex flex-col rounded-2xl border border-river-300/40 bg-cream p-6 md:p-7 lg:p-6"
               >
-                <h4 className="text-2xl">{o.title}</h4>
+                <h4 className="text-[1.35rem] leading-snug">{o.title}</h4>
                 <p className="mt-2 text-sm text-river-700">
                   {o.length} · {o.format}
                 </p>
-                {/* TODO 4: price is one string in content/site.ts. */}
-                <p className="mt-4 font-serif text-2xl text-navy-700">{o.price}</p>
+                {/* TODO 4 / TODO 16: price is one plain string; no currency assumptions. */}
+                <p className="mt-4 font-serif text-[1.35rem] leading-snug text-navy-700">{o.price}</p>
                 <p className="mt-4 text-[16px] leading-relaxed">{o.description}</p>
                 <a
                   href={o.cta.href}
@@ -100,6 +100,8 @@ export function Services() {
             ))}
           </ul>
           <p className="mt-6 text-sm text-river-700">{services.offersNote}</p>
+          {/* E-23. TODO 17 (scope), TODO 29 (sentence case, not all caps). */}
+          <p className="mt-2 font-medium text-navy-700">{services.discountNote}</p>
         </Container>
       </div>
     </section>

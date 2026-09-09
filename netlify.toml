@@ -5,8 +5,14 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Baked into the page at build time (canonical URL, sitemap, Open Graph).
+  NEXT_PUBLIC_SITE_URL = "https://www.flowingrivershealth.com"
 
 # Netlify's Next.js Runtime. Without this the build output (.next) is served
 # as plain static files, which 404s on every URL.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# RESEND_API_KEY and CONTACT_EMAIL are runtime secrets for the contact form.
+# Set them in the Netlify dashboard (Site configuration -> Environment
+# variables), not in this file.

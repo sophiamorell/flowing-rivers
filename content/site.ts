@@ -69,7 +69,7 @@ export type SiteContent = {
     /** Shown in the footer and used for local search. */
     display: string;
   };
-  /** TODO 6 — the address the contact form delivers to, and shown as fallback. */
+  /** The address the contact form delivers to, also shown on the page. */
   email: string;
   nav: LinkContent[];
   headerCta: LinkContent;
@@ -89,7 +89,12 @@ export type SiteContent = {
   about: {
     eyebrow: string;
     heading: string;
+    /** Opening paragraphs (E-06, E-07, E-08, E-10). */
     paragraphs: string[];
+    /** "That could be in:" intro + list (E-11). Rendered as a quiet <ul>. */
+    focus: { intro: string; items: string[] };
+    /** Paragraph(s) after the list (E-12). */
+    closing: string[];
     credentialsEyebrow: string;
     credentials: string[];
     image: ImageContent;
@@ -104,6 +109,8 @@ export type SiteContent = {
     offersHeading: string;
     offers: OfferCard[];
     offersNote: string;
+    /** E-23. Rendered in sentence case, navy, below the payment line. */
+    discountNote: string;
   };
   howItWorks: {
     eyebrow: string;
@@ -157,12 +164,12 @@ export type SiteContent = {
 /* ---------- The content -------------------------------------------------- */
 
 export const site: SiteContent = {
-  name: "Flowing Rivers Health", // TODO 2: confirm legal/marketing name
+  name: "Flowing Rivers Health", // confirmed (E-37)
   tagline: "Holistic Nurse Coaching",
-  legalName: "Flowing Rivers Health", // TODO 2
+  legalName: "Flowing Rivers Health", // confirmed (E-37)
   owner: {
     firstName: "Allison",
-    fullName: "Allison Scobie", // TODO 15: surname taken from the headshot filename. Confirm.
+    fullName: "Allison Scobie", // confirmed by E-04
     role: "Holistic Nurse Coach",
   },
   location: {
@@ -171,7 +178,7 @@ export const site: SiteContent = {
     stateCode: "CO",
     display: "Durango, Colorado",
   },
-  email: "hello@example.com", // TODO 6: replace with the real business email
+  email: "Allison.RN@flowingrivershealth.com", // E-35 / E-38
 
   nav: [
     { label: "About", href: "#about" },
@@ -195,13 +202,14 @@ export const site: SiteContent = {
 
   hero: {
     h1: "Holistic nurse coaching in Durango, Colorado.",
-    sub: "A calm, practical place to work through stress, get grounded, and build habits that hold. For adults and children in the Durango area, in person or online.",
+    // TODO 18: "adults and children" vs the FAQ's audience is unresolved (edits doc 1.5).
+    // TODO 19: "20 years of nursing experience" vs About's "20 years Army + 10+ years hospital". Verbatim from Allison; do not adjust.
+    sub: "A calm, practical place to work through stress, get grounded, and build habits that hold. For adults and children in the Durango area, in person or online. Sessions are offered by a Registered Nurse with 20 years of nursing experience.",
     primaryCta: { label: "Book a free consult", href: "#contact" },
     secondaryCta: { label: "What is nurse coaching?", href: "#about" },
-    // TODO 3: credentials are a placeholder until Allison confirms them.
-    trustLine: "Licensed nurse [credentials to confirm] · Durango, Colorado",
+    trustLine: "Allison Scobie MPH, BSN, RN · Durango, Colorado", // E-04, verbatim
     image: {
-      src: "/images/hero.jpg", // TODO 8: swap for a final hero photograph if desired
+      src: "/images/hero.jpg", // confirmed: the seated portrait (edits doc section 12)
       alt: "Allison, a holistic nurse coach, sitting cross-legged on a wooden floor and smiling",
       width: 1092,
       height: 1456,
@@ -211,21 +219,39 @@ export const site: SiteContent = {
   about: {
     eyebrow: "About",
     heading: "Hi, I'm Allison!",
-    // TODO 9: this is draft copy in Allison's register. She should rewrite it in her own words.
     paragraphs: [
-      "I'm a nurse in Durango, Colorado. For years I watched people leave appointments with a diagnosis and a prescription, but not much room to talk about what was actually going on in their lives. Coaching is the part of nursing I always wanted more of. It is the hour, the questions, and the plan you build with someone who listens.",
-      "Working with me is mostly a conversation. I ask questions, and I listen to the answers. We look at the whole picture: how you sleep, what you eat, where your time goes, what you believe about yourself, and who is around you. Then we pick one or two things to change and see how they hold. No lectures, and no worksheets you will never open.",
+      // TODO 27: confirm E-06 wording ("I'm a Registered Nurse"); the markup was ambiguous.
+      "I'm a Registered Nurse in Durango, Colorado. After working as a Nurse in the U.S. Army for 20 years and as an in-patient Case Manager for 10+ years at a regional hospital, I decided to transform my nursing practice to focus more on the wellness of the whole person.",
+      "For years I watched people leave appointments with a diagnosis and a prescription, but not much room to talk about what was actually going on in their lives. Coaching is the part of nursing I always wanted more of. I've realized that human connection and providing a non-judgmental space for you to grow is vital for you to create change and live a healthy and happy life.",
+    ],
+    focus: {
+      intro:
+        "I combine my knowledge as a RN with the science of holistic health and wellness coaching to provide client-centered care in order to help you make positive lifestyle changes — that could be in:",
+      items: [
+        // TODO 28: Allison's markup says "Stress & anxiety management" and "Chronic illness".
+        // "Management" is the verb the compliance rules prohibit, so the recommended
+        // placeholders are shown until she signs off on wording (edits doc E-11).
+        "Living with stress and anxiety",
+        "Living with chronic illness",
+        "Mindfulness",
+        "Poor sleep and low energy",
+        "Reconnecting with goals and values",
+      ],
+    },
+    closing: [
+      "Working with me is mostly a conversation. I ask questions, and I listen to the answers. We look at the whole picture: how you sleep, what you eat, where your time goes, what you believe about yourself, and who is around you. Then we pick one or two things to change and see how they hold.",
     ],
     credentialsEyebrow: "Credentials",
-    // TODO 3: DO NOT invent licenses, degrees, or certifications. Allison supplies these.
+    // E-14, verbatim from Allison. No board certification exists; do not add one.
+    // TODO 22: confirm the 2026 certificate is awarded, not in progress.
     credentials: [
-      "[TODO: nursing license and state]",
-      "[TODO: degree(s)]",
-      "[TODO: coaching training or certification, if any]",
-      "Based in Durango, Colorado",
+      "Registered Nurse (RN) — Colorado Board of Nursing",
+      "Master of Public Health — Colorado School of Public Health (2017)",
+      "Bachelor of Science in Nursing — Creighton University (2007)",
+      "Transformative Nurse Coach Certificate — The Nurse Coach Collective (2026)",
     ],
     image: {
-      src: "/images/allison.jpg", // TODO 7: confirm this is the portrait she wants used
+      src: "/images/allison.jpg", // TODO 7: 1242px on the long edge, below the 1600px bar. Ask for the original.
       alt: "Portrait of Allison smiling, with dark hair and a navy top, against a warm beige background",
       width: 714,
       height: 892,
@@ -238,7 +264,8 @@ export const site: SiteContent = {
     intro:
       "Health does not live in one place. How you sleep, what you believe, who you spend time with, and how you feel in your own body all pull on each other. Holistic nurse coaching looks at all of it, and then helps you change what you actually want to change.",
     quote: {
-      text: "I provide health coaching through the holistic model, focusing on mind, body, spirituality, environment, emotions, and sexuality. I use guided inquiry, reflection, and mindfulness to help the client make lasting lifestyle changes.",
+      // E-16, verbatim. TODO 14: the yoga addition belongs in the compliance/scope review.
+      text: "I provide health coaching through the holistic model, focusing on mind, body, spirituality, environment, emotions, and sexuality. I use guided inquiry, reflection, mindfulness practices, yoga / mindful movement, and visualization to help the client make lasting lifestyle changes.",
       attribution: "Allison",
     },
     dimensionsHeading: "The six dimensions we work with",
@@ -277,7 +304,7 @@ export const site: SiteContent = {
     offersHeading: "Ways to work together",
     offers: [
       {
-        title: "Free intro call", // TODO 10: confirm Allison offers a free intro call
+        title: "Free discovery call", // confirmed (E-18)
         length: "20 minutes",
         format: "Phone or video",
         price: "Free",
@@ -286,28 +313,42 @@ export const site: SiteContent = {
         cta: { label: "Book a call", href: "#contact" },
       },
       {
-        title: "Coaching session",
+        title: "First coaching session",
         length: "60 minutes",
         format: "In person or virtual",
-        // TODO 4: the Nov 2025 survey listed $75 for 60 minutes. Do not publish until confirmed.
-        price: "[Price to confirm]",
+        // TODO 4: $100 was in the copy Allison marked up and she left it unchanged (E-19). Verify before launch.
+        price: "$100",
         description:
           "A full hour to talk through what is happening, notice what is pulling on you, and choose what to work on next.",
+        cta: { label: "Get in touch", href: "#contact" },
+      },
+      {
+        title: "Starter Package",
+        length: "Ten 60 minute sessions",
+        format: "In person or virtual",
+        // TODO 16: her assets doc says $1,000; her marked-up edit says "Price agreed upon". Built as marked.
+        price: "Price agreed upon",
+        // TODO 21: Practice Better / EHR / messaging details deliberately left out (HIPAA wording risk).
+        description:
+          "We will create a package that works for you. Our first session will consist of a holistic health assessment, examining all aspects of your life. We will create goals and direction for following sessions.",
         cta: { label: "Get in touch", href: "#contact" },
       },
       {
         title: "Extended session",
         length: "90 minutes",
         format: "In person or virtual",
-        // TODO 4: 90-minute pricing was not in the survey. Confirm with Allison.
-        price: "[Price to confirm]",
+        // TODO 4: $150 was in the copy Allison marked up and she left it unchanged (E-20). Verify before launch.
+        price: "$150",
         description:
           "Extra room for a first meeting, a big decision, or a season of life that needs more than an hour.",
         cta: { label: "Get in touch", href: "#contact" },
       },
     ],
-    offersNote:
-      "Insurance is not accepted. Sessions are paid directly.",
+    offersNote: "Insurance is not accepted. Sessions are paid directly.",
+    // E-23. TODO 17: scope unclear (all sessions vs Starter Package only; "active military" is new).
+    // TODO 29: Allison wrote this in all caps; rendered in sentence case per the style rules.
+    discountNote:
+      "25% discount for active military, veterans, first responders, and teachers.",
   },
 
   howItWorks: {
@@ -321,7 +362,8 @@ export const site: SiteContent = {
       },
       {
         title: "We set the direction together.",
-        body: "Through guided inquiry and reflection, we work out what matters most to you right now and where to start.",
+        // E-26. If the Starter Package leaves the page, the second sentence goes too.
+        body: "Through guided inquiry and reflection, we work out what matters most to you right now and where to start. Then we develop a package that works for you.",
       },
       {
         title: "We meet regularly and adjust.",
@@ -342,15 +384,16 @@ export const site: SiteContent = {
       {
         question: "Is this therapy?",
         answer:
-          "No. Holistic nurse coaching is not psychotherapy, medical care, or a substitute for treatment from your physician or mental health provider. Coaching does not diagnose or treat medical or psychiatric conditions. Many clients work with a therapist or doctor alongside coaching, and that is a good combination. If you are in crisis, call or text 988.",
+          "No. Holistic nurse coaching is not psychotherapy, medical care, or a substitute for treatment from your physician or mental health provider. Coaching does not diagnose or treat medical or psychiatric conditions. Many clients work with a therapist or doctor alongside coaching, and that is a good combination. If you are in crisis or thinking of suicide, call or text 988.",
       },
       {
         question: "Do you take insurance?",
         answer:
-          "No. Coaching is not covered by insurance, so I do not bill it. Sessions are paid directly, and current pricing is listed above. If you have questions about cost, ask on the free intro call and I will answer them plainly, before you commit to anything.",
+          // E-30, verbatim. TODO 30: "directly" appears twice; her words, flagged for a lighter edit.
+          "No. I currently do not take insurance. Sessions are paid directly. If you have questions about cost, ask on the free intro call and I will answer them directly, before you commit to anything.",
       },
       {
-        // TODO 16: this answer is a reasonable draft. Confirm typical length and cadence with Allison.
+        // E-31: approved as written.
         question: "How long do people usually work with you?",
         answer:
           "It depends on what you are working on. Some people come for a few sessions to get unstuck on one thing. Others meet every couple of weeks for several months while a bigger change settles in. There is no set program and no minimum commitment. We decide the pace together and adjust as we go.",
@@ -361,15 +404,17 @@ export const site: SiteContent = {
           "Both. I meet clients in person in Durango, Colorado, and by video for anyone who prefers it or lives farther out. Most people settle into one format, but you can switch when life calls for it. Choose the format you prefer on the contact form, or say you are open to either.",
       },
       {
-        // TODO 16: "together with a parent" is an assumption. Confirm how Allison works with children.
+        // E-33. TODO 18: Allison's markup says "Women"; that contradicts the hero, so the
+        // current word "Adults" stays until she decides (edits doc 1.5). Everything else is verbatim.
         question: "Who do you work with?",
         answer:
-          "Adults between about 25 and 60 who are going through a stressful season and want to change how they live. People often arrive carrying mild stress, anxiety, or low mood, and a wish to feel more grounded and confident. I also work with children under 13, together with a parent. I do not work with teenagers.",
+          "Adults between about 25 and 65 who are experiencing high levels of stress and/or moderate anxiety. I also work with people navigating chronic illness, experiencing low energy and/or poor sleep, and those interested in adding mindfulness practices to their daily life. I also work with children under 12, together with a parent. I do not work with teenagers.",
       },
       {
         question: "What happens in a first session?",
         answer:
-          "Mostly, we talk. I will ask about what brought you here, what a good day looks like, and what has and has not worked before. We look across the six areas above and notice where things feel off. By the end, you will have one or two small, specific things to try before we meet again.",
+          // E-34, verbatim ("holist" typo corrected). TODO 31: "diving deep into" could be lightened if she is open to it.
+          "Mostly, we talk. I will ask about what brought you here, what a good day looks like, and what has and has not worked before. We conduct a full holistic health assessment diving deep into the six areas of the holistic health model. By the end, you will have one or two small, specific things to try before we meet again.",
       },
     ],
   },
@@ -377,7 +422,7 @@ export const site: SiteContent = {
   contact: {
     eyebrow: "Contact",
     heading: "Get in touch",
-    // TODO 17: confirm the two-business-day reply promise with Allison.
+    // TODO 23: confirm the two-business-day reply promise with Allison.
     intro:
       "Tell me a little about what's going on. I'll reply within two business days.",
     form: {
@@ -484,7 +529,7 @@ export type UiStrings = {
 };
 
 export const ui: UiStrings = {
-  wordmark: { line1: "Flowing Rivers", line2: "Health" }, // TODO 2
+  wordmark: { line1: "Flowing Rivers", line2: "Health" }, // confirmed (E-37)
   skipLink: "Skip to content",
   mainNav: "Main",
   footerNav: "Footer",

@@ -92,7 +92,7 @@ export function ContactForm() {
             <SectionHeading id="contact-heading" eyebrow={contact.eyebrow}>
               {contact.heading}
             </SectionHeading>
-            {/* TODO 17: confirm the reply-time promise. */}
+            {/* TODO 23: confirm the reply-time promise. */}
             <p className="mt-6 max-w-prose">{contact.intro}</p>
 
             <ul className="mt-8 space-y-4 text-[16px]">
@@ -100,8 +100,8 @@ export function ContactForm() {
                 <Mail aria-hidden="true" size={20} strokeWidth={1.5} className="mt-1 shrink-0 text-terracotta-500" />
                 <span>
                   <span className="block text-sm text-river-700">{ui.contactEmailPrompt}</span>
-                  {/* TODO 6: real business email */}
-                  <a href={mailto} className="rounded font-medium text-navy-700 underline decoration-river-300 underline-offset-4 hover:decoration-terracotta-500">
+                  {/* E-35: terracotta-700 so it reads as a link at body size. */}
+                  <a href={mailto} className="rounded font-medium text-terracotta-700 underline decoration-terracotta-700/40 underline-offset-4 hover:decoration-terracotta-700">
                     {site.email}
                   </a>
                 </span>

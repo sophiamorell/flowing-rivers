@@ -31,7 +31,7 @@ export function Faq() {
                   className="mt-1 shrink-0 text-terracotta-500 transition-transform duration-200 group-open:rotate-180"
                 />
               </summary>
-              {/* TODO 16: answers 4 and 6 contain assumptions to confirm. */}
+              {/* TODO 18: answer 6 ("Who do you work with?") awaits the audience decision. */}
               <p className="mt-3 max-w-prose pr-8 text-[17px]">{item.answer}</p>
             </details>
           ))}

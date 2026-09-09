@@ -15,7 +15,7 @@ export function Footer() {
             <p className="mt-4 text-sm text-cream/85">{site.tagline}</p>
             <address className="mt-6 space-y-1 text-[15px] not-italic">
               <p>{site.location.display}</p>
-              {/* TODO 6: real business email */}
+              {/* E-38: business email */}
               <p>
                 <a
                   href={`mailto:${site.email}`}

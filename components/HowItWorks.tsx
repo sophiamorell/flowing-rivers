@@ -15,7 +15,7 @@ export function HowItWorks() {
         </SectionHeading>
         <p className="mt-4 max-w-prose">{howItWorks.intro}</p>
 
-        {/* TODO 10: step 1 assumes a free intro call. */}
+        {/* E-25/E-26: the free discovery call is confirmed. */}
         <ol
           className="relative mt-12 grid gap-10 before:absolute before:bottom-2 before:left-[22px] before:top-2 before:w-px before:bg-river-300 md:grid-cols-3 md:gap-10 md:before:bottom-auto md:before:left-0 md:before:right-0 md:before:top-6 md:before:h-px md:before:w-auto"
         >

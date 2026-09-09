@@ -61,17 +61,17 @@ export function Header({ solid = false }: { solid?: boolean }) {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8 md:h-20">
         <Logo priority />
 
-        <nav aria-label={ui.mainNav} className="hidden items-center gap-8 md:flex">
+        <nav aria-label={ui.mainNav} className="hidden items-center gap-5 md:flex lg:gap-8">
           {site.nav.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded text-[15px] font-medium text-navy-700 transition-colors hover:text-terracotta-700"
+              className="whitespace-nowrap rounded text-[15px] font-medium text-navy-700 transition-colors hover:text-terracotta-700"
             >
               {link.label}
             </a>
           ))}
-          <ButtonLink href={site.headerCta.href} className="px-5 py-2.5">
+          <ButtonLink href={site.headerCta.href} className="whitespace-nowrap px-5 py-2.5">
             {site.headerCta.label}
           </ButtonLink>
         </nav>

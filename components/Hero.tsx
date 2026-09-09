@@ -37,7 +37,7 @@ export function Hero() {
                 {hero.secondaryCta.label}
               </ButtonLink>
             </div>
-            {/* TODO 3: trust line carries a credentials placeholder until confirmed. */}
+            {/* E-04: credentials confirmed. */}
             <p className="mt-7 text-sm text-river-700">{hero.trustLine}</p>
           </div>
 

@@ -2,7 +2,7 @@
 
 A one-page marketing site with a contact form for Allison's holistic nurse
 coaching practice in Durango, Colorado. Built with Next.js and Tailwind CSS,
-ready to deploy on Netlify or Vercel.
+deployed on Netlify from GitHub.
 
 This README is written for someone who does not code. The three things you
 will most likely want to do are: **change the words**, **swap the logo**, and
@@ -91,7 +91,7 @@ npm run build
 
 The form sends messages through a service called **Resend** (free at this
 volume). Three settings are needed, and they go in a file called `.env.local`
-for local testing, or in Vercel's Environment Variables for the live site.
+for local testing, or in Netlify's Environment variables for the live site.
 Copy `.env.example` to `.env.local` to start.
 
 | Setting | What it is |
@@ -107,56 +107,49 @@ Never commit `.env.local` to git. It is already ignored.
 `CONTACT_EMAIL` inbox. Replying to that email replies to the person who
 submitted the form.
 
-## 5. Putting it online
+## 5. Putting it online (GitHub + Netlify)
 
-The site needs a host that can run a small server function for the contact
-form, so it cannot be uploaded as plain files. Netlify and Vercel both work
-and both have free plans that cover this traffic. Either way the flow is the
-same: put the code on GitHub, connect the host to GitHub, add the four
-settings from section 4, deploy.
+The working copy of the code lives outside Google Drive, at
+`~/Sites/flowing-rivers-health`, because git and `npm install` do not get along
+with Drive's sync. The copy in the Drive folder is a plain-file mirror for
+reference. Make edits in the `~/Sites` copy, then commit and push.
 
-### Step 1: put the code on GitHub (once)
+**One-time setup**
 
-1. Create a free account at github.com if you do not have one.
-2. Install GitHub Desktop (desktop.github.com) and sign in.
-3. In GitHub Desktop: **File → Add Local Repository**, choose your local
-   copy of this folder. If it says the folder is not a repository, click
-   **create a repository** in that dialog and accept the defaults.
-4. Click **Publish repository**. Keep it private. Done.
+1. Sign in to GitHub from the terminal (opens a browser page to approve):
 
-From now on, every change you save and then **Commit** and **Push** in
-GitHub Desktop is redeployed automatically.
+   ```bash
+   gh auth login --web --git-protocol https
+   ```
 
-### Step 2a: Netlify
+2. Create the repository and push (private):
 
-1. Go to app.netlify.com and sign in with GitHub.
-2. **Add new project → Import an existing project → GitHub**, pick the
-   repository.
-3. Netlify reads `netlify.toml` and fills in the build settings itself.
-   Nothing to change.
-4. Before clicking Deploy, open **Environment variables** and add
-   `RESEND_API_KEY`, `CONTACT_EMAIL`, `CONTACT_FROM` (optional), and
-   `NEXT_PUBLIC_SITE_URL`.
-5. Click **Deploy**. In a minute or two you get a `something.netlify.app`
-   address you can send to Allison.
-6. Real domain: **Domain management → Add a domain**, follow the DNS steps.
-   Then set `NEXT_PUBLIC_SITE_URL` to `https://yourdomain.com` and trigger a
-   redeploy (**Deploys → Trigger deploy**).
+   ```bash
+   cd ~/Sites/flowing-rivers-health && gh repo create flowing-rivers-health --private --source=. --push
+   ```
 
-### Step 2b: Vercel (the alternative)
+3. Go to app.netlify.com, sign in with GitHub, choose **Add new project →
+   Import an existing project → GitHub**, and pick `flowing-rivers-health`.
+   Netlify reads `netlify.toml`; nothing to change in the build settings.
+4. Under **Environment variables**, add `RESEND_API_KEY`, `CONTACT_EMAIL`
+   (`Allison.RN@flowingrivershealth.com`), and, once the domain is verified in
+   Resend, `CONTACT_FROM`. `NEXT_PUBLIC_SITE_URL` is already set in
+   `netlify.toml`.
+5. Click **Deploy**. You get a `something.netlify.app` link in a minute or two.
 
-1. Go to vercel.com, sign in with GitHub, **Add New → Project**, pick the
-   repository. Vercel detects Next.js; no settings need changing.
-2. Add the same environment variables, click **Deploy**.
-3. Domain: **Settings → Domains**, add it, follow the DNS instructions, then
-   update `NEXT_PUBLIC_SITE_URL` and redeploy.
+**Every later change**
 
-### After the first deploy
+```bash
+cd ~/Sites/flowing-rivers-health && git add -A && git commit -m "Describe the change" && git push
+```
 
-- Send a test message through the live form and confirm it lands in the
-  `CONTACT_EMAIL` inbox (TODO 21).
-- Check the share preview by pasting the URL into a Slack or iMessage
-  window; it should show the logo card.
+Netlify rebuilds and publishes automatically on every push.
+
+**The real domain**
+
+In Netlify, open **Domain management**, add `flowingrivershealth.com`, and
+follow the DNS instructions. Keep `www` as the primary so it matches
+`NEXT_PUBLIC_SITE_URL`.
 
 ## 6. What is where
 
@@ -185,6 +178,6 @@ TODO.md               the pre-launch checklist
   the brief's `river-600` measures 4.49:1 on cream and 4.03:1 on sand (below
   the 4.5:1 AA minimum for small text). `river-600` is fine at 18px and up.
 - No trackers, no cookies, no cookie banner. If you want visitor numbers,
-  turn on Vercel Analytics in the Vercel dashboard.
+  turn on Netlify Analytics in the Netlify dashboard (server-side, no cookies).
 - The contact form is ordinary email, not a secure medical channel, and it
   says so.
