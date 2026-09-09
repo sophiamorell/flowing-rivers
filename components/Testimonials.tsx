@@ -62,7 +62,7 @@ export function Testimonials() {
       <Container>
         <div className="flex items-end justify-between gap-6">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cream/80">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cream">
               {testimonials.eyebrow}
             </p>
             <h2 id="testimonials-heading" className="mt-3 text-3xl text-cream md:text-4xl">
@@ -89,7 +89,7 @@ export function Testimonials() {
             <blockquote className="mt-4 font-serif text-xl leading-snug text-cream md:text-2xl">
               <p>“{expanded ? item.quote : item.excerpt}”</p>
             </blockquote>
-            <figcaption className="mt-5 text-[15px] font-medium text-cream/90">
+            <figcaption className="mt-5 text-[15px] font-medium text-cream">
               {item.name}, {item.age}
               <span className="sr-only">
                 . {ui.testimonialLabel} {index + 1} {ui.of} {total}
