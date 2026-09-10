@@ -19,7 +19,7 @@ be done before launch but the site works without it. **Nice to have** = later.
 | 3  | Credentials | ✅ Closed: E-04 trust line and E-14 credentials list, verbatim. No board certification exists and none is implied. See item 22 for the 2026 certificate. | `content/site.ts` → `hero.trustLine`, `about.credentials` |
 | 4  | **Pricing.** $100 (60 min) and $150 (90 min) were in the copy Allison marked up and she left them unchanged, so they are now on the page. Sophie to verify before launch. Starter Package price: see item 16. | ⚠️ Partly | `content/site.ts` → `services.offers[].price` |
 | 5  | Domain | ✅ Closed: `flowingrivershealth.com` is registered, pointed at Netlify, and live (www redirects to the bare domain). Canonical, sitemap, Open Graph, and structured data use it. | `lib/site-url.ts`, `netlify.toml`, `.env.example` |
-| 6  | Business email | ✅ On the page, in the footer, and as the form fallback. **The live form still fails with `not_configured`**: `RESEND_API_KEY` and `CONTACT_EMAIL` are not set in Netlify (see item 26). | `content/site.ts` → `email` |
+| 6  | Business email | ✅ On the page, in the footer, and as the form fallback. Mailbox MX records were added to Netlify DNS on 2026-09-09 (Microsoft 365). | `content/site.ts` → `email` |
 | 7  | Photograph of Allison (About) | ✅ Received. The headshot is 1242px on its long edge, under the ~1600px bar. Ask for the original. | `public/images/allison.jpg` |
 | 8  | Hero image | ✅ Closed: the seated portrait. | `public/images/hero.jpg` |
 | 9  | About copy in Allison's voice | ✅ Closed (E-06, E-07, E-10, E-11). See items 27 and 28 for two wording checks. | `content/site.ts` → `about` |
@@ -47,9 +47,9 @@ be done before launch but the site works without it. **Nice to have** = later.
 | #  | Item | Status | Where in the code |
 |----|------|--------|-------------------|
 | 23 | Reply-time promise ("within two business days") in the contact intro and success message. Confirm she can keep it. | Needed | `content/site.ts` → `contact` |
-| 24 | **Resend sending domain.** Until `flowingrivershealth.com` is verified in Resend, the form sends from Resend's test address, which only delivers to the account owner's inbox. Verify the domain and set `CONTACT_FROM`. | Blocking deploy | `.env.example`, Resend dashboard |
+| 24 | ~~Resend sending domain~~ No longer needed: the form moved to Netlify Forms on 2026-09-10. The Resend account and the `RESEND_API_KEY` / `CONTACT_EMAIL` / `CONTACT_FROM` variables in Netlify can be deleted. | ✅ Closed | |
 | 25 | Analytics: none installed, per the brief. Netlify Analytics is server-side and cookieless if she wants numbers. | Nice to have | Netlify dashboard |
-| 26 | **Live form does not send yet.** Netlify needs `RESEND_API_KEY` (from resend.com) and `CONTACT_EMAIL` under Site configuration → Environment variables, then a redeploy, then one real test submission. Until the domain is verified in Resend, delivery only works to the inbox that owns the Resend account. | **Blocking launch** | `app/api/contact/route.ts` |
+| 26 | **Form delivery via Netlify Forms.** In Netlify: Forms → enable form detection → redeploy → open the "contact" form → Notifications → add an email notification to Allison.RN@flowingrivershealth.com. Then one real test submission. Free tier allows 100 submissions a month. | **Blocking launch** | `app/api/contact/route.ts` |
 | 27 | E-06 wording: the markup read "I'm **add** Registered Nurse". Built as "I'm a Registered Nurse in Durango, Colorado." Confirm. | Confirm | `content/site.ts` → `about.paragraphs[0]` |
 | 28 | E-11 list items 1 and 2: her markup says "Stress & anxiety management" and "Chronic illness." "Management" is the verb the compliance rules prohibit, so the page shows "Living with stress and anxiety" and "Living with chronic illness" until she signs off. | Confirm | `content/site.ts` → `about.focus.items` |
 | 29 | E-23 typography: she wrote the discount line in all caps; it is rendered in sentence case (all caps is reserved for eyebrow labels and reads badly to screen readers). | Flag | `components/Services.tsx` |

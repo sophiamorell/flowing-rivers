@@ -89,23 +89,23 @@ npm run build
 
 ## 4. Making the contact form send email
 
-The form sends messages through a service called **Resend** (free at this
-volume). Three settings are needed, and they go in a file called `.env.local`
-for local testing, or in Netlify's Environment variables for the live site.
-Copy `.env.example` to `.env.local` to start.
+The form is handled by **Netlify Forms**, which is part of the hosting. There
+are no keys to manage. One-time setup in the Netlify dashboard:
 
-| Setting | What it is |
-|---|---|
-| `RESEND_API_KEY` | From resend.com → API Keys. |
-| `CONTACT_EMAIL` | The inbox that should receive messages (Allison's). |
-| `CONTACT_FROM` | Optional. The "from" address, on a domain verified in Resend, e.g. `Flowing Rivers Health <hello@yourdomain.com>`. Until the domain is verified, leave it blank and Resend's test address is used, which can only deliver to the email that owns the Resend account. |
-| `NEXT_PUBLIC_SITE_URL` | The site's public address, e.g. `https://flowingrivershealth.com`, no trailing slash. |
+1. Open the project, then **Forms** in the left menu, and click **Enable form
+   detection** if it is not already on.
+2. Go to **Deploys**, **Trigger deploy**, **Deploy site**. After this deploy a
+   form named **contact** appears under Forms.
+3. Open the **contact** form, click **Notifications** (or Form notifications
+   under Project configuration), choose **Email notification**, and enter the
+   address that should receive messages (Allison's).
+4. Submit one test through the live form and check the inbox. Replies go to
+   the visitor's address, which is in the email.
 
-Never commit `.env.local` to git. It is already ignored.
-
-**Test it end to end:** run `npm run dev`, fill in the form, and check the
-`CONTACT_EMAIL` inbox. Replying to that email replies to the person who
-submitted the form.
+Submissions are also listed under Forms in Netlify, so nothing is lost if an
+email goes astray. The free plan includes 100 submissions a month, more than
+enough for this practice. Spam is filtered by Netlify; the form also carries a
+hidden honeypot field that bots fill in and people never see.
 
 ## 5. Putting it online (GitHub + Netlify)
 
@@ -131,10 +131,8 @@ reference. Make edits in the `~/Sites` copy, then commit and push.
 3. Go to app.netlify.com, sign in with GitHub, choose **Add new project →
    Import an existing project → GitHub**, and pick `flowing-rivers-health`.
    Netlify reads `netlify.toml`; nothing to change in the build settings.
-4. Under **Environment variables**, add `RESEND_API_KEY`, `CONTACT_EMAIL`
-   (`Allison.RN@flowingrivershealth.com`), and, once the domain is verified in
-   Resend, `CONTACT_FROM`. `NEXT_PUBLIC_SITE_URL` is already set in
-   `netlify.toml`.
+4. No environment variables are needed; `NEXT_PUBLIC_SITE_URL` is set in
+   `netlify.toml`. Set up form notifications as described in section 4.
 5. Click **Deploy**. You get a `something.netlify.app` link in a minute or two.
 
 **Every later change**
@@ -158,7 +156,7 @@ app/
   layout.tsx          fonts, page metadata, skip link
   page.tsx            the home page (composes the sections in order)
   privacy/page.tsx    the privacy policy page
-  api/contact/        the code that sends the form by email
+  (form submissions go to Netlify Forms; see public/__forms.html)
   globals.css         colors and base styles
   icon.png, apple-icon.png   browser and phone icons
 components/           one file per section of the page

@@ -7,9 +7,8 @@
   NODE_VERSION = "22"
   # Baked into the page at build time (canonical URL, sitemap, Open Graph).
   NEXT_PUBLIC_SITE_URL = "https://flowingrivershealth.com"
-  # Netlify's secret scanner flags RESEND_API_KEY because Next.js writes the
-  # build environment into its cache under .next/cache. That cache is never
-  # served, so skip it (and node_modules) when scanning.
+  # Next.js writes the build environment into its cache under .next/cache,
+  # which is never served; skip it (and node_modules) in the secret scanner.
   SECRETS_SCAN_OMIT_PATHS = ".next/cache/**,node_modules/**"
 
 # Netlify's Next.js Runtime. Without this the build output (.next) is served
@@ -17,6 +16,5 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# RESEND_API_KEY and CONTACT_EMAIL are runtime secrets for the contact form.
-# Set them in the Netlify dashboard (Site configuration -> Environment
-# variables), not in this file.
+# The contact form uses Netlify Forms (public/__forms.html). Turn on form
+# detection in the Netlify dashboard and add an email notification there.

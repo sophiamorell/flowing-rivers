@@ -11,7 +11,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { RiverDivider } from "@/components/ui/RiverDivider";
 
-type Status = "idle" | "submitting" | "success" | "error" | "rateLimited";
+type Status = "idle" | "submitting" | "success" | "error";
 
 const inputBase =
   "w-full rounded-xl border bg-white px-4 py-3 text-ink placeholder:text-river-700/80 transition-colors focus:border-navy-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta-600";
@@ -40,7 +40,7 @@ export function ContactForm() {
 
   useEffect(() => {
     if (status === "success") successRef.current?.focus();
-    if (status === "error" || status === "rateLimited") alertRef.current?.focus();
+    if (status === "error") alertRef.current?.focus();
   }, [status]);
 
   const {
@@ -59,20 +59,26 @@ export function ContactForm() {
     setStatus("submitting");
     const form = event?.target as HTMLFormElement | undefined;
     const honeypot = form ? String(new FormData(form).get("website") ?? "") : "";
+    /* Submissions go to Netlify Forms (see public/__forms.html). Netlify
+       emails them to the address configured in its dashboard and runs its
+       own spam filtering; the honeypot field is discarded there too. */
     try {
-      const res = await fetch("/api/contact", {
+      const body = new URLSearchParams({
+        "form-name": "contact",
+        name: values.name,
+        email: values.email,
+        phone: values.phone ?? "",
+        message: values.message,
+        format: values.format ?? "",
+        consent: values.consent ? "yes" : "no",
+        website: honeypot,
+        elapsedMs: String(Date.now() - startedAt),
+      }).toString();
+      const res = await fetch("/__forms.html", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...values,
-          website: honeypot,
-          elapsedMs: Date.now() - startedAt,
-        }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
       });
-      if (res.status === 429) {
-        setStatus("rateLimited");
-        return;
-      }
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
       setStatus("success");
     } catch {
@@ -135,7 +141,7 @@ export function ContactForm() {
                 onSubmit={(e) => void handleSubmit(onSubmit)(e)}
                 className="rounded-2xl border border-river-300/40 bg-sand p-6 sm:p-8 md:p-10"
               >
-                {(status === "error" || status === "rateLimited") && (
+                {status === "error" && (
                   <div
                     ref={alertRef}
                     tabIndex={-1}
@@ -144,7 +150,7 @@ export function ContactForm() {
                   >
                     <p className="flex items-start gap-2 font-semibold text-terracotta-700">
                       <CircleAlert aria-hidden="true" size={20} className="mt-[3px] shrink-0" />
-                      <span>{status === "error" ? f.error.heading : f.rateLimited}</span>
+                      <span>{f.error.heading}</span>
                     </p>
                     <p className="mt-2 pl-7">
                       {f.error.bodyBefore}

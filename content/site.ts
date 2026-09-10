@@ -157,7 +157,6 @@ export type SiteContent = {
       submitting: string;
       success: { heading: string; body: string };
       error: { heading: string; bodyBefore: string; bodyAfter: string };
-      rateLimited: string;
     };
   };
   footer: {
@@ -527,15 +526,13 @@ export const site: SiteContent = {
       submitting: "Sending",
       success: {
         heading: "Thank you. Your message is on its way.",
-        body: "I'll reply within two business days, usually sooner. If it's easier, you can also reply to the confirmation from your email.",
+        body: "I'll reply within two business days, usually sooner.",
       },
       error: {
         heading: "Something went wrong and your message did not send.",
         bodyBefore: "Please email me directly at ",
         bodyAfter: " and I will get back to you.",
       },
-      rateLimited:
-        "You have sent a few messages already. Please wait a little while, or email me directly.",
     },
   },
 
@@ -565,8 +562,8 @@ export const site: SiteContent = {
       {
         heading: "Where it goes",
         body: [
-          "When you press send, your message is emailed to me, Allison. It is not stored on this website or in any database. It lives in my email inbox, the same as if you had written to me directly.",
-          "The email is delivered by a service called Resend, which handles the sending. It does not use your details for anything else.",
+          "When you press send, your message is emailed to me, Allison, and I reply from my own inbox, the same as if you had written to me directly.",
+          "The form is handled by Netlify, the company that hosts this site. Netlify forwards each message to me and keeps a copy in its dashboard so that nothing is lost in transit. I delete those copies once I have replied. Netlify does not use your details for anything else.",
         ],
       },
       {

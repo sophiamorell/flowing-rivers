@@ -1,0 +1,21 @@
+<!--
+  Netlify Forms definition. Netlify reads this static file at deploy time to
+  learn the form's name and fields; the real form on the page posts to this
+  URL. Keep the field names in sync with components/ContactForm.tsx.
+  "website" is the honeypot: Netlify discards any submission that fills it.
+-->
+<html>
+  <head></head>
+  <body>
+    <form name="contact" data-netlify="true" netlify-honeypot="website" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <input name="phone" type="tel" />
+      <textarea name="message"></textarea>
+      <input name="format" type="text" />
+      <input name="consent" type="text" />
+      <input name="website" type="text" />
+    </form>
+  </body>
+</html>
