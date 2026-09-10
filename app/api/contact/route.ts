@@ -90,7 +90,13 @@ export async function POST(req: Request) {
     });
     if (error) {
       console.error("[contact] Resend error", error);
-      return Response.json({ ok: false, error: "send_failed" }, { status: 502 });
+      /* Resend's error *name* (e.g. validation_error) is safe to return and
+         makes misconfiguration diagnosable from the browser. The full message
+         stays in the function log. */
+      return Response.json(
+        { ok: false, error: "send_failed", detail: error.name },
+        { status: 502 },
+      );
     }
     return Response.json({ ok: true });
   } catch (err) {
