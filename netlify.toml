@@ -7,6 +7,10 @@
   NODE_VERSION = "22"
   # Baked into the page at build time (canonical URL, sitemap, Open Graph).
   NEXT_PUBLIC_SITE_URL = "https://flowingrivershealth.com"
+  # Netlify's secret scanner flags RESEND_API_KEY because Next.js writes the
+  # build environment into its cache under .next/cache. That cache is never
+  # served, so skip it (and node_modules) when scanning.
+  SECRETS_SCAN_OMIT_PATHS = ".next/cache/**,node_modules/**"
 
 # Netlify's Next.js Runtime. Without this the build output (.next) is served
 # as plain static files, which 404s on every URL.
