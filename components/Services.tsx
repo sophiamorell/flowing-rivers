@@ -88,10 +88,11 @@ export function Services() {
                 </p>
                 {/* TODO 4 / TODO 16: price is one plain string; no currency assumptions. */}
                 <p className="mt-4 font-serif text-[1.35rem] leading-snug text-navy-700">{o.price}</p>
-                <p className="mt-4 text-[16px] leading-relaxed">{o.description}</p>
+                <p className="mt-4 pb-7 text-[16px] leading-relaxed">{o.description}</p>
+                {/* Pinned to the card's bottom edge so the row of buttons lines up. */}
                 <a
                   href={o.cta.href}
-                  className="mt-6 inline-flex items-center gap-1.5 self-start rounded font-semibold text-terracotta-700 transition-colors hover:text-terracotta-600"
+                  className="mt-auto inline-flex items-center justify-center gap-1.5 rounded-full bg-terracotta-500/15 px-5 py-3 text-[15px] font-semibold text-terracotta-700 transition-colors hover:bg-terracotta-500/25"
                 >
                   {o.cta.label}
                   <ArrowRight aria-hidden="true" size={18} strokeWidth={2} />
