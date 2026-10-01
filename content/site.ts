@@ -80,6 +80,8 @@ export type SiteContent = {
   };
   /** The address the contact form delivers to, also shown on the page. */
   email: string;
+  /** Shown in the footer. `display` is what people see; `tel` is what the phone dials. */
+  phone: { display: string; tel: string };
   nav: LinkContent[];
   headerCta: LinkContent;
   meta: {
@@ -192,6 +194,7 @@ export const site: SiteContent = {
     display: "Durango, Colorado",
   },
   email: "Allison.RN@flowingrivershealth.com", // E-35 / E-38
+  phone: { display: "(970) 335-9683", tel: "+19703359683" },
 
   nav: [
     { label: "About", href: "#about" },

@@ -15,6 +15,7 @@ export function localBusinessJsonLd() {
     description: site.meta.description,
     url: siteUrl,
     email: site.email,
+    telephone: site.phone.tel,
     image: `${siteUrl}${site.meta.ogImage.src}`,
     logo: `${siteUrl}/logo-mark.png`,
     founder: {

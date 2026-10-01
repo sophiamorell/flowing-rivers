@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { site, ui } from "@/content/site";
 import { Logo } from "@/components/Logo";
 
@@ -13,10 +14,23 @@ export function Footer() {
           <div className="md:col-span-5">
             <Logo variant="light" />
             <p className="mt-4 text-sm text-cream/85">{site.tagline}</p>
-            <address className="mt-6 space-y-1 text-[15px] not-italic">
-              <p>{site.location.display}</p>
+            <address className="mt-6 space-y-2 text-[15px] not-italic">
+              <p className="flex items-center gap-2.5">
+                <MapPin aria-hidden="true" size={18} strokeWidth={1.5} className="shrink-0 text-river-300" />
+                <span>{site.location.display}</span>
+              </p>
+              <p className="flex items-center gap-2.5">
+                <Phone aria-hidden="true" size={18} strokeWidth={1.5} className="shrink-0 text-river-300" />
+                <a
+                  href={`tel:${site.phone.tel}`}
+                  className="rounded underline decoration-river-300/60 underline-offset-4 hover:decoration-cream"
+                >
+                  {site.phone.display}
+                </a>
+              </p>
               {/* E-38: business email */}
-              <p>
+              <p className="flex items-center gap-2.5">
+                <Mail aria-hidden="true" size={18} strokeWidth={1.5} className="shrink-0 text-river-300" />
                 <a
                   href={`mailto:${site.email}`}
                   className="rounded underline decoration-river-300/60 underline-offset-4 hover:decoration-cream"
