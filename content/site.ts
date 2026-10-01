@@ -339,7 +339,7 @@ export const site: SiteContent = {
         cta: { label: "Get in touch", href: "#contact" },
       },
       {
-        title: "Starter Package",
+        title: "Starter package",
         length: "Ten 60 minute sessions",
         format: "In person or virtual",
         // TODO 16: her assets doc says $1,000; her marked-up edit says "Price agreed upon". Built as marked.
