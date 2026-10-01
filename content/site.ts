@@ -329,7 +329,7 @@ export const site: SiteContent = {
         cta: { label: "Book a call", href: "#contact" },
       },
       {
-        title: "First coaching session",
+        title: "First session",
         length: "60 minutes",
         format: "In person or virtual",
         // TODO 4: $100 was in the copy Allison marked up and she left it unchanged (E-19). Verify before launch.
